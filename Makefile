@@ -1,14 +1,14 @@
 SOURCES := $(shell find . -name '*.go')
 PKG := $(shell go list ./machine/)
 PKG_LIST := $(shell go list ${PKG}/... | grep -v /vendor/)
-BINARY := docker-machine-driver-nutanix
+BINARY := docker-machine-driver-xo
 
 BUILD=`date +%FT%T%z`
 PLATFORM=`uname`
 
 LDFLAGS=-ldflags "-w -s"
 
-build: docker-machine-driver-nutanix
+build: docker-machine-driver-xo
 
 test: $(SOURCES)
 	go test -v -short -race -timeout 30s ./...

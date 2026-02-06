@@ -48,14 +48,14 @@ func NewDriver(hostname, storePath string) *Driver {
 }
 
 func (d *Driver) DriverName() string {
-	return "xo"
+	return "Xen Orchestra"
 }
 
 func (d *Driver) GetCreateFlags() []mcnflag.Flag {
 	return []mcnflag.Flag{
 		mcnflag.StringFlag{
 			Name:   "xo-url",
-			Usage:  "Xen Orchestra URL (e.g. https://xo.example.com)",
+			Usage:  "Xen Orchestra URL (e.g. https://xen-orchestra.com)",
 			EnvVar: "XO_URL",
 		},
 		mcnflag.StringFlag{

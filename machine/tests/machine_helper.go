@@ -5,23 +5,18 @@ import (
 	"os/exec"
 )
 
-// const (
-// 	driver = "nutanix"
-// )
-
 // MachineConfig structure
 type MachineConfig struct {
 	VMMem       int
 	VMCPUs      int
-	VMCores     int
 	MachineName string
-	VNICs       []string
-	VDisks      []string
+	VMNetwork   string
 	SSHUser     string
 	SSHPass     string
-	NutanixUser string
-	NutanixPass string
-	Endpoint    string
+	XOUser      string
+	XOPass      string
+	XOURL       string
+	XOTemplate  string
 }
 
 // CreateMachine test new machine creation
@@ -30,10 +25,6 @@ func (c MachineConfig) CreateMachine() ([]byte, error) {
 	if vmMem == 0 {
 		vmMem = 1024
 	}
-	vmCores := c.VMCores
-	if vmCores == 0 {
-		vmCores = 1
-	}
 	vmCPUs := c.VMCPUs
 	if vmCPUs == 0 {
 		vmCPUs = 1
@@ -41,31 +32,23 @@ func (c MachineConfig) CreateMachine() ([]byte, error) {
 	args := []string{
 		"create",
 		"-d",
-		"nutanix",
-		"--nutanix-username",
-		c.NutanixUser,
-		"--nutanix-password",
-		c.NutanixPass,
-		"--nutanix-endpoint",
-		c.Endpoint,
-		"--nutanix-vm-mem",
+		"xo",
+		"--xo-username",
+		c.XOUser,
+		"--xo-password",
+		c.XOPass,
+		"--xo-url",
+		c.XOURL,
+		"--xo-template",
+		c.XOTemplate,
+		"--xo-vm-mem",
 		fmt.Sprintf("%d", vmMem),
-		"--nutanix-vm-cpus",
+		"--xo-vm-cpus",
 		fmt.Sprintf("%d", vmCPUs),
-		"--nutanix-vm-cores",
-		fmt.Sprintf("%d", vmCores),
-		"--nutanix-vm-ssh-username",
-		c.SSHUser,
-		"--nutanix-vm-ssh-password",
-		c.SSHPass,
 	}
 
-	for _, nic := range c.VNICs {
-		args = append(args, "--nutanix-vm-network-uuid", nic)
-	}
-
-	for _, disk := range c.VDisks {
-		args = append(args, "--nutanix-vm-disk-uuid", disk)
+	if c.VMNetwork != "" {
+		args = append(args, "--xo-vm-network", c.VMNetwork)
 	}
 
 	args = append(args, c.MachineName)

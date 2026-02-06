@@ -1,6 +1,6 @@
 version: 2
 
-project_name: docker-machine-driver-xo
+project_name: docker-machine-driver-xen-orchestra
 
 builds:
   - goos:

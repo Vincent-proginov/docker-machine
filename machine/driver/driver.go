@@ -155,7 +155,7 @@ func (d *Driver) Create() error {
 	// Prepare VM request
 	vmReq := xoclient.Vm{
 		NameLabel:       d.GetMachineName(),
-		NameDescription: "Created by docker-machine-driver-xo",
+		NameDescription: "Created by docker-machine-driver-xen-orchestra",
 		Template:        d.VMTempl,
 		CPUs: xoclient.CPUs{
 			Number: d.VMCPUs,

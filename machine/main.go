@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/docker/machine/libmachine/drivers/plugin"
-	"github.com/nutanix/docker-machine/machine/driver"
+	"github.com/Vincent-proginov/docker-machine/machine/driver"
 )
 
 func main() {

@@ -5,7 +5,7 @@ on:
 
 jobs:
   security:
-    if: github.repository == 'nutanix/docker-machine'
+    if: github.repository == 'Vincent-proginov/docker-machine'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

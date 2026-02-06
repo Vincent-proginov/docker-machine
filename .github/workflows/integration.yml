@@ -50,7 +50,7 @@ jobs:
           go-version-file: go.mod
 
       - name: Compile
-        run: go build -v -o build/docker-machine-driver-nutanix machine/main.go
+        run: go build -v -o build/docker-machine-driver-xen-orchestra machine/main.go
 
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@0.33.1
@@ -68,6 +68,6 @@ jobs:
         uses: actions/upload-artifact@v6.0.0
         with:
           # Artifact name
-          name: docker-machine-driver-nutanix
+          name: docker-machine-driver-xen-orchestra
           # Directory containing files to upload
-          path: build/docker-machine-driver-nutanix
+          path: build/docker-machine-driver-xen-orchestra

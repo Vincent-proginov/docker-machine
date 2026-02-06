@@ -1,4 +1,4 @@
-module github.com/nutanix/docker-machine
+module github.com/Vincent-proginov/docker-machine
 
 go 1.24.0
 
